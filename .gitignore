@@ -3,3 +3,5 @@
 *.exe
 /.vscode
 *.txt
+/inputs
+/.cph
