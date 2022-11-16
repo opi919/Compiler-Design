@@ -56,7 +56,6 @@ int main(){
         printf("\n$%s\t%s",stk,ip);
 
         check();
-        check();
     }
 
     if(strcmp(stk,"E")== 0 && stk[1] == '\0')
