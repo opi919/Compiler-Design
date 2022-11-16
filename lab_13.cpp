@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <iostream>
-#include<string.h>
+#include <string.h>
 
 using namespace std;
 
@@ -13,22 +13,18 @@ string first[10], follow[10];
 struct grammer
 {
     string p;
-    string prod;
+    string prod; // production
 } g[10];
 
 void first_set(int i)
 {
-    // if g[i].prod contains |
-    int k = 1;
-
     for (int j = 1; j <= g[i].prod.length(); j++)
     {
-        if (g[i].prod[j - k] == '|')
+        if (g[i].prod[j - 1] == '|')
         {
-            
+
             first[i] += g[i].prod[j];
-            cout<<first[i]<<" | "<<endl;
-            k++;
+            break;
         }
     }
     if (g[i].prod[0] >= 'A' && g[i].prod[0] <= 'Z')
@@ -37,26 +33,22 @@ void first_set(int i)
         {
             if (g[j].p[0] == g[i].prod[0])
             {
-                if (first[j][0] == '\0')
+                if (first[j].empty())
                     first_set(j);
                 else
                 {
-
                     first[i] += first[j];
-                    cout<<first[i]<<" \0 "<<endl;
-                    return;
+                    
                 }
+                break;
             }
         }
     }
     else
     {
         first[i] += g[i].prod[0];
-        cout<<first[i]<<" else "<<endl;
-        return;
     }
 }
-
 
 int main()
 {
@@ -70,32 +62,27 @@ int main()
 
         for (int j = 0; j < strlen(ts); j++)
         {
-            if(ts[j]=='-'){
-                flag =0; 
-                j+=2;
+            if (ts[j] == '-')
+            {
+                flag = 0;
+                j += 2;
             }
-            if(flag) g[i].p+=ts[j];
-            else g[i].prod+=ts[j];
+            if (flag)
+                g[i].p += ts[j];
+            else
+                g[i].prod += ts[j];
         }
     }
     // find first set
-    for (int i = 0; i < np-2; i++)
+    for (int i = np - 1; i >= 0; i--)
     {
         first_set(i);
     }
-    first_set(0);
 
     // print first set
+    cout << "First Set: " << endl;
     for (int i = 0; i < np; i++)
     {
-        if (g[i].p[1] != '\0')
-            printf("\nFirst(%c%c) = { ", g[i].p[0], g[i].p[1]);
-        else
-            printf("\nFirst(%c) = { ", g[i].p[0]);
-        for (int j = 0; j < first[i].length(); j++)
-        {
-            printf("%c ", first[i][j]);
-        }
-        printf(" }");
+        cout << g[i].p << " -> {" << first[i] << "}" << endl;
     }
 }
