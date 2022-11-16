@@ -98,10 +98,4 @@ int main()
         }
         printf(" }");
     }
-
-    // find follow
-    follow[0]+= '$';
-    for( int i = 0; i < np; i++){
-        follow_set(i);
-    }
 }
