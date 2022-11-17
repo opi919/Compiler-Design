@@ -32,7 +32,7 @@ int main()
     string str,str2, vowel, consonant, palindrome, temp;
     int count=1;
     ifstream file;
-    file.open("test.txt");
+    file.open("inputs/test.txt");
     // getline(file, str,EOF);
     while (getline(file, str2))
     {

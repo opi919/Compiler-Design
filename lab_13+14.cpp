@@ -148,7 +148,7 @@ int main()
     }
 
     // print first set
-    cout << "First Set: " << endl;
+    cout << "\nFirst Set: " << endl;
     for (int i = 0; i < np; i++)
     {
         cout << g[i].p << " -> {" << first[i] << "}" << endl;
